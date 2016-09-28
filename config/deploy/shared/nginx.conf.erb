@@ -19,6 +19,7 @@ server {
     proxy_set_header Host $http_host;
     proxy_redirect off;
     proxy_pass http://unicorn_<%= fetch(:full_app_name) %>;
+    proxy_read_timeout 300;
   }
 
   error_page 500 502 503 504 /500.html;

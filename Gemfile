@@ -1,7 +1,9 @@
 group :development do
-  gem 'capistrano', '3.4.0',           require: false
-  gem "capistrano-bundler", '1.1.4',   require: false
-  gem "capistrano-rails", '1.1.3',     require: false
-  gem "capistrano-rvm",                require: false
-  gem "airbrussh"                      require: false
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails', github: 'capistrano/rails'
+  gem 'capistrano-rails-console'
+  gem 'capistrano-sidekiq'
+  gem 'capistrano-rvm', '~> 0.1.1'
+  gem 'airbrussh', require: false
 end

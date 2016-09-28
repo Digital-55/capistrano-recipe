@@ -7,7 +7,7 @@ stdout_path "#{root}/log/unicorn.log"
 #listen 5000
 listen "/tmp/unicorn.<%= fetch(:full_app_name) %>.sock"
 worker_processes 4
-timeout 40
+timeout 300
 preload_app true
 
 # Force unicorn to look at the Gemfile in the current_path
