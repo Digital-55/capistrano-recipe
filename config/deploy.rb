@@ -30,7 +30,6 @@ set :keep_releases, 10
 set :local_user, ENV['USER']
 set :deploy_user, deploysecret(:user)
 
-
 # Run test before deploy
 set :tests, []
 
@@ -47,19 +46,18 @@ set(:config_files, %w(
 
 set(:symlinks, [
                  {
-                     source: "nginx.conf",
-                     link: "/etc/nginx/sites-enabled/#{fetch(:full_app_name)}"
+                    source: 'nginx.conf',
+                    link: "/etc/nginx/sites-enabled/#{fetch(:full_app_name)}"
                  },
                  {
-                     source: "unicorn_init.sh",
-                     link: "/etc/init.d/unicorn_#{fetch(:full_app_name)}"
+                    source: 'unicorn_init.sh',
+                    link: "/etc/init.d/unicorn_#{fetch(:full_app_name)}"
                  },
                  {
-                     source: "log_rotation",
+                     source: 'log_rotation',
                      link: "/etc/logrotate.d/#{fetch(:full_app_name)}"
                  }
              ])
-
 
 namespace :deploy do
   # deploy:setup_config
@@ -71,11 +69,11 @@ namespace :deploy do
   after 'deploy:setup_config', 'nginx:executable_init'
 
   # Check right version of deploy branch
-  before :deploy, "deploy:check_revision"
+  before :deploy, 'deploy:check_revision'
   # Run test aund continue only if passed
-  before :deploy, "deploy:run_tests"
+  before :deploy, 'deploy:run_tests'
   # Compile assets locally and then rsync
-  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+  # after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'
   # Restart unicorn
   after 'deploy:publishing', 'deploy:restart'
